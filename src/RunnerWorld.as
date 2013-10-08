@@ -7,6 +7,7 @@ package
 		public function RunnerWorld() 
 		{
 			add(new Player());
+			add(new Platform());
 		}
 		
 	}
