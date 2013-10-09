@@ -68,6 +68,7 @@ package
 		
 		override public function moveCollideY(e:Entity):Boolean {
 			doubleJumped = false;
+			onPlatform = true;
 			this.ySpeed = 0;
 			return true;
 		}
