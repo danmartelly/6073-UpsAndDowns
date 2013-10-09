@@ -16,7 +16,9 @@ package
 			
 			this.x = 0;
 			this.y = 400;
-			setHitbox(20, 20);
+			setHitbox(400, 20);
+			
+			this.type = "platform";
 		}
 		
 	}
