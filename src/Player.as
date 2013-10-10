@@ -26,7 +26,7 @@ package
 		{
 			this.graphic = new Image(PLAYER);
 			
-			setHitbox(50, 50);
+			setHitbox(42, 21);
 		}
 		
 		override public function update():void
@@ -63,7 +63,7 @@ package
 		
 		override public function moveCollideX(e:Entity):Boolean {
 			this.xSpeed = 0;
-			return true;
+			return true; 
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
