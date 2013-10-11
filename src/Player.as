@@ -4,6 +4,7 @@ package
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import net.flashpunk.FP;
 	import Math;
 	
 	
@@ -11,6 +12,7 @@ package
 	{
 		/* A lot of help came from here: http://www.emanueleferonato.com/2011/05/30/creation-of-a-platform-game-using-flashpunk-step-2/
 		*/
+		private var paused:int = 0;
 		private const maxYVel:Number = 10;
 		private const jumpSpeed:Number = 12;
 		private const gravity:Number = .5;
@@ -28,6 +30,18 @@ package
 		
 		override public function update():void
 		{
+			if (Input.check(Key.P) && paused==0)
+			{
+				FP.world.active = false;
+				paused = 1;
+				if (Input.check(Key.S))
+				{
+					FP.world.active = true;
+				}
+
+
+			}
+			
 			
 			if (Input.pressed(Key.UP) && onPlatform) {
 				// you can always jump if you're on a platform
