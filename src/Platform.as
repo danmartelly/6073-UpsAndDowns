@@ -6,7 +6,7 @@ package
 	
 	public class Platform extends Entity
 	{
-		
+		private const platformHeight:Number = 20;
 		public function Platform() 
 		{
 			var platformWidth:int = 400;
@@ -21,7 +21,19 @@ package
 			this.type = "platform";
 		}
 		
+		public function init(width:Number, yPos:Number):void
+		{
+			
+			var rectBitmap:BitmapData = new BitmapData(width, platformHeight, false, 0x99999999)
+			this.graphic = new Image(rectBitmap);
+			this.setHitbox(width, platformHeight);
+			this.y = yPos;
+		}
 		
+		override public function update():void
+		{
+			moveBy( -1, 0);
+		}
 	}
 
 }
