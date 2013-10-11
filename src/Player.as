@@ -4,6 +4,7 @@ package
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import net.flashpunk.FP;
 	import Math;
 	
 	
@@ -27,8 +28,7 @@ package
 		}
 		
 		override public function update():void
-		{
-			
+		{			
 			if (Input.pressed(Key.UP) && onPlatform) {
 				// you can always jump if you're on a platform
 				ySpeed = -jumpSpeed;
