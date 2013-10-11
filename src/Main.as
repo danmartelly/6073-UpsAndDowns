@@ -9,11 +9,12 @@ package
 		public function Main()
 		{
 			super(800, 600, 60, false);
-			FP.world = new RunnerWorld;
 		}
 		
 		override public function init():void {
 			trace("FlashPunk has started successfully!");
+			FP.world = new RunnerWorld;
+
 		}
 	}
 	
