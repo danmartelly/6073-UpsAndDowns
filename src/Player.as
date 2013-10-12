@@ -19,6 +19,7 @@ package
 		private var ySpeed:Number = 0;
 		private var doubleJumped:Boolean;
 		private var onPlatform:Boolean;
+		private var emotionState:String;
 		[Embed(source = 'assets/sample-sprite.png')] private const PLAYER:Class;
 		public function Player() 
 		{
@@ -44,7 +45,16 @@ package
 			ySpeed = Math.min(ySpeed, maxYVel);
 			ySpeed = Math.max(ySpeed, -maxYVel);
 			
+			// Check for collision with a collectible and set new emotion
+			var c:Collectible = collide("collectible", x, y) as Collectible;
+			
+			if (c) {
+				this.emotionState = c.getEmotion();
+				c.destroy();
+			}
+			
 			moveBy(0, ySpeed, "platform");
+			
 		}
 		
 		override public function moveCollideX(e:Entity):Boolean {
