@@ -7,16 +7,16 @@ package
 	public class Collectible extends Entity
 	{
 		private var emotion:String;
-		[Embed(source = 'assets/sample-sprite.png')] private const HAPPY_SPRITE:Class;
-		[Embed(source = 'assets/sample-sprite.png')] private const SAD_SPRITE:Class;
-		[Embed(source = 'assets/sample-sprite.png')] private const ANGRY_SPRITE:Class;
+		[Embed(source = 'assets/HappyFlower.png')] private const HAPPY_SPRITE:Class;
+		[Embed(source = 'assets/SadCloud.png')] private const SAD_SPRITE:Class;
+		[Embed(source = 'assets/AngryBolt.png')] private const ANGRY_SPRITE:Class;
 		
 		public function Collectible(xVal:Number, yVal:Number) 
 		{
 			this.x = xVal;
 			this.y = yVal;
 			this.type = "collectible";
-			this.setHitbox(10, 10);
+			this.setHitbox(25, 25);
 			this.setEmotion();
 		}
 		
@@ -46,6 +46,11 @@ package
 		
 		public function destroy():void {
 			FP.world.remove(this);
+		}
+		
+		override public function update():void
+		{
+			moveBy( -1, 0);
 		}
 	}
 }

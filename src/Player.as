@@ -19,12 +19,23 @@ package
 		private var ySpeed:Number = 0;
 		private var doubleJumped:Boolean;
 		private var onPlatform:Boolean;
-		private var emotionState:String;
+		private var happiness:Number = 0;
+		private var sadness:Number = 0;
+		private var anger:Number = 0;
+		private var currentEmotion = "happy";
+		
+		[Embed(source = 'assets/Player_v0_hs.png')] private const HAPPY_SAD_SPRITE:Class;
+		[Embed(source = 'assets/Player_v0_ha.png')] private const HAPPY_ANGRY_SPRITE:Class;
+		[Embed(source = 'assets/Player_v0_sh.png')] private const SAD_HAPPY_SPRITE:Class;
+		[Embed(source = 'assets/Player_v0_sa.png')] private const SAD_ANGRY_SPRITE:Class;
+		[Embed(source = 'assets/Player_v0_ah.png')] private const ANGRY_HAPPY_SPRITE:Class;
+		[Embed(source = 'assets/Player_v0_as.png')] private const ANGRY_SAD_SPRITE:Class;
 		[Embed(source = 'assets/sample-sprite.png')] private const PLAYER:Class;
 		public function Player() 
 		{
 			this.graphic = new Image(PLAYER);
 			this.x = xPos;
+			this.y = yPos;
 			setHitbox(42, 21);
 		}
 		
@@ -49,7 +60,62 @@ package
 			var c:Collectible = collide("collectible", x, y) as Collectible;
 			
 			if (c) {
-				this.emotionState = c.getEmotion();
+				var emotion:String = c.getEmotion();
+				if (emotion == "happy") {
+					happiness++;
+					if (happiness >= sadness && happiness >= anger) {
+						currentEmotion = "happy";
+						if (sadness >= anger){
+							this.graphic = new Image(HAPPY_SAD_SPRITE);
+						} else {
+							this.graphic = new Image(HAPPY_ANGRY_SPRITE);
+						}
+					} else if (happiness >= sadness) {
+						// Anger is greater than happiness
+						// emotion will already be anger
+						this.graphic = new Image(ANGRY_HAPPY_SPRITE);
+					} else if (happiness >= anger) {
+						// Sad > happy
+						// emotion is already sad
+						this.graphic = new Image(SAD_HAPPY_SPRITE);
+					}
+				} else if (emotion == "angry") {
+					anger++;
+					if (anger >= happiness && anger >= sadness) {
+						currentEmotion = "angry";
+						if (happiness >= sadness){
+							this.graphic = new Image(ANGRY_HAPPY_SPRITE);
+						} else {
+							this.graphic = new Image(ANGRY_SAD_SPRITE);
+						}
+					} else if (anger >= happiness) {
+						// Sadness is greater than anger
+						// emotion will already be sadness
+						this.graphic = new Image(SAD_ANGRY_SPRITE);
+					} else if (anger >= sadness) {
+						// happy > angry
+						// emotion is already happy
+						this.graphic = new Image(HAPPY_ANGRY_SPRITE);
+					}
+				} else if (emotion == "sad") {
+					sadness++;
+					if (sadness >= happiness && sadness >= anger) {
+						currentEmotion = "sad";
+						if (happiness >= anger){
+							this.graphic = new Image(SAD_HAPPY_SPRITE);
+						} else {
+							this.graphic = new Image(SAD_ANGRY_SPRITE);
+						}
+					} else if (sadness >= happiness) {
+						// Anger is greater than sadness
+						// emotion will already be anger
+						this.graphic = new Image(ANGRY_SAD_SPRITE);
+					} else if (sadness >= anger) {
+						// happy > sad
+						// emotion is already happiness
+						this.graphic = new Image(HAPPY_SAD_SPRITE);
+					}
+				}
 				c.destroy();
 			}
 			
