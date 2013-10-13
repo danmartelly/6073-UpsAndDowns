@@ -7,13 +7,14 @@ package
 	public class Collectible extends Entity
 	{
 		private var emotion:String;
-		private var emotionVal:Number;
 		[Embed(source = 'assets/sample-sprite.png')] private const HAPPY_SPRITE:Class;
 		[Embed(source = 'assets/sample-sprite.png')] private const SAD_SPRITE:Class;
 		[Embed(source = 'assets/sample-sprite.png')] private const ANGRY_SPRITE:Class;
 		
-		public function Collectible() 
+		public function Collectible(xVal:Number, yVal:Number) 
 		{
+			this.x = xVal;
+			this.y = yVal;
 			this.type = "collectible";
 			this.setHitbox(10, 10);
 			this.setEmotion();
@@ -25,9 +26,9 @@ package
 		
 		private function setEmotion():void {
 			// Randomly choose one of the three emotions
-			this.emotionVal = Math.ceil(Math.random() * 3);
+			var emotionVal:Number = Math.ceil(Math.random() * 3);
 			
-			switch(this.emotionVal) {
+			switch(emotionVal) {
 				case 1:
 					this.emotion = "happy";
 					this.graphic = new Image(HAPPY_SPRITE);
