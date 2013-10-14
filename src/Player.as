@@ -22,7 +22,7 @@ package
 		private var happiness:Number = 0;
 		private var sadness:Number = 0;
 		private var anger:Number = 0;
-		private var currentEmotion = "happy";
+		private var currentEmotion:String = "happy";
 		
 		[Embed(source = 'assets/Player_v0_hs.png')] private const HAPPY_SAD_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_ha.png')] private const HAPPY_ANGRY_SPRITE:Class;

@@ -50,7 +50,7 @@ package
 		
 		override public function update():void
 		{
-			moveBy( -1, 0);
+			moveBy( -2, 0);
 		}
 	}
 }

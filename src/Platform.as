@@ -14,25 +14,26 @@ package
 			var rectBitmap:BitmapData = new BitmapData(platformWidth, platformHeight, false, 0x99999999)
 			this.graphic = new Image(rectBitmap);
 			
-			this.x = 0;
+			this.x = 500;
 			this.y = 400;
 			setHitbox(400, 20);
 			
 			this.type = "platform";
 		}
 		
-		public function init(width:Number, yPos:Number):void
+		public function init(width:Number, xPos:Number, yPos:Number):void
 		{
 			
 			var rectBitmap:BitmapData = new BitmapData(width, platformHeight, false, 0x99999999)
 			this.graphic = new Image(rectBitmap);
 			this.setHitbox(width, platformHeight);
 			this.y = yPos;
+			this.x = xPos;
 		}
 		
 		override public function update():void
 		{
-			moveBy( -1, 0);
+			moveBy( -2, 0);
 		}
 	}
 
