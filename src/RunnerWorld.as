@@ -31,7 +31,7 @@ package
 			
 			// Create a new collectible every 2 seconds
 			if (time % (SECONDS * 2) == 0) { 
-				var randomX:Number = Math.ceil(Math.random() * 100);
+				var randomX:Number = Math.ceil(Math.random() * 100+50);
 				var xVal:Number = player.x + randomX;
 				var yVal:Number = player.y;
 				
