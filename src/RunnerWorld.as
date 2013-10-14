@@ -15,8 +15,7 @@ package
 		public function RunnerWorld() 
 		{
 			player = new Player();
-			add(player);
-			
+			add(player);	
 			
 			var plat:Platform = new Platform();
 			plat.init(300, 0, 300);
@@ -29,34 +28,27 @@ package
 		override public function update():void {
 			time += 1;
 			
-			// Create a new collectible every 2 seconds
-		/*	if (time % (SECONDS * 2) == 0) { 
-				//var randomX:Number = Math.ceil(Math.random() * 100+50);
-				var xVal:Number = 800;
-				var yVal:Number = player.y;
-				
-				add(new Collectible(xVal, yVal));
-			}
-		*/
-			
+			// higher platforms--rarer since less easy to get to
 			if (time % (SECONDS * 3) == 1) {
 				var randomY:Number = Math.ceil(Math.random() * 400-50);
 				var newPlat:Platform = new Platform();
 				newPlat.init(Math.random() * 500 + 100, 500, randomY);
 				if (Math.random() > .5) {
-					trace("yay we got lucky");
 					var xVal1:Number = 500 + Math.random() * 200;
 					var yVal1:Number = randomY2 - Math.random() * 75 - 25;
 					add(new Collectible(xVal1, yVal1));
 				}
 				add(newPlat);
 			}
+			
+			// low-ish platforms
 			if (time % (SECONDS * 2) == 1) {
 				var randomY2:Number = Math.ceil(-Math.random() * 200+500);
 				var newPlat2:Platform = new Platform();
 				newPlat2.init(Math.random() * 600 + 100, 500, randomY2);
+				
+				//50% chance for powerup to be attached to platform
 				if (Math.random() > .5) {
-					trace("yay we got lucky");
 					var xVal:Number = 500 + Math.random() * 200;
 					var yVal:Number = randomY2 - Math.random() * 75 - 25;
 					add(new Collectible(xVal, yVal));

@@ -24,6 +24,7 @@ package
 		private var sadness:Number = 0;
 		private var anger:Number = 0;
 		private var currentEmotion:String = "happy";
+		private var story:Story;
 		
 		[Embed(source = 'assets/Player_v0_hs.png')] private const HAPPY_SAD_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_ha.png')] private const HAPPY_ANGRY_SPRITE:Class;
@@ -45,6 +46,9 @@ package
 			this.graphic = new Image(PLAYER);
 			this.x = xPos;
 			setHitbox(26, 50);
+			this.story = new Story();
+			trace(this.story);
+			FP.world.add(this.story);
 		}
 		
 		override public function update():void
@@ -84,6 +88,8 @@ package
 						}
 						setHitbox(50, 50);
 						currentEmotion = "happy";
+						//var story:Story = world.getInstance("story");
+						this.story.showText("happy");
 						if (sadness >= anger){
 							this.graphic = new Image(HAPPY_SAD_SPRITE);
 						} else {
@@ -108,6 +114,7 @@ package
 						}
 						setHitbox(50, 50);
 						currentEmotion = "angry";
+						this.story.showText("angry");
 						if (happiness >= sadness){
 							this.graphic = new Image(ANGRY_HAPPY_SPRITE);
 						} else {
@@ -127,6 +134,7 @@ package
 					sadness++;
 					if (sadness >= happiness && sadness >= anger) {
 						currentEmotion = "sad";
+						this.story.showText("sad");
 						setHitbox(16, 30);
 						if (happiness >= anger){
 							this.graphic = new Image(SAD_HAPPY_SPRITE);
