@@ -44,7 +44,7 @@ package
 		{
 			this.graphic = new Image(PLAYER);
 			this.x = xPos;
-			setHitbox(42, 50);
+			setHitbox(26, 50);
 		}
 		
 		override public function update():void
@@ -53,6 +53,12 @@ package
 				// you can always jump if you're on a platform
 				ySpeed = -jumpSpeed;
 				onPlatform = false; // you're probably not on the platform anymore if you've jumped
+				
+				// Prevent the player from doublejumping if they're not happy
+				if (currentEmotion != "happy") {
+					doubleJumped = true;
+					ySpeed += gravity;
+				}
 			} else if (Input.pressed(Key.UP) && !doubleJumped) {
 				ySpeed = -jumpSpeed;
 				doubleJumped = true; // you only get one double jump
@@ -139,9 +145,16 @@ package
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
-			doubleJumped = false;
-			onPlatform = true;
-			this.ySpeed = 0;
+			if (this.y + 50 == e.y){
+				doubleJumped = false;
+				onPlatform = true;
+				this.ySpeed = 0;
+			} else if (this.x <= e.x){
+				this.x -= 4;
+			} else {
+				this.y += 10;
+				ySpeed += gravity;
+			}
 			return true;
 		}
 	}

@@ -45,7 +45,7 @@ package
 				add(newPlat);
 			}
 			if (time % (SECONDS * 3) == 1) {
-				var randomY2:Number = Math.ceil(Math.random() * 700+50);
+				var randomY2:Number = Math.ceil(-Math.random() * 200+600);
 				var newPlat2:Platform = new Platform();
 				newPlat2.init(Math.random()*600+100, 500, randomY2);
 				add(newPlat2);
@@ -58,7 +58,7 @@ package
 			for each (var e:Entity in entityList) {
 				e.update();
 			}
-			//death conditions
+
 			if (player.x < 0 || player.y > FP.screen.height) {
 				FP.world = new GameOver;
 			}
