@@ -30,13 +30,12 @@ package
 		[Embed(source = 'assets/Player_v0_sa.png')] private const SAD_ANGRY_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_ah.png')] private const ANGRY_HAPPY_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_as.png')] private const ANGRY_SAD_SPRITE:Class;
-		[Embed(source = 'assets/sample-sprite.png')] private const PLAYER:Class;
+		[Embed(source = 'assets/Player_v0_hs.png')] private const PLAYER:Class;
 		public function Player() 
 		{
 			this.graphic = new Image(PLAYER);
 			this.x = xPos;
-			this.y = yPos;
-			setHitbox(42, 21);
+			setHitbox(42, 50);
 		}
 		
 		override public function update():void
