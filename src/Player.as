@@ -34,11 +34,11 @@ package
 		[Embed(source = 'assets/Player_v0_hs.png')] private const PLAYER:Class;
 		[Embed(source = 'assets/HappySound.mp3')] private const HAPPY_SOUND:Class;
 		[Embed(source = 'assets/AngrySound.mp3')] private const ANGRY_SOUND:Class;
-		//[Embed(source = 'assets/SadSound.wav', mimeType = 'application/octet-stream')] private const SAD_SOUND:Class;
+		[Embed(source = 'assets/SadSound.mp3')] private const SAD_SOUND:Class;
 		
 		private var sfxHappy:Sfx = new Sfx(HAPPY_SOUND);
 		private var sfxAngry:Sfx = new Sfx(ANGRY_SOUND);
-		//private var sfxAngry:Sfx = new Sfx(ANGRY_SOUND);
+		private var sfxSad:Sfx = new Sfx(SAD_SOUND);
 		
 		public function Player() 
 		{
@@ -114,6 +114,7 @@ package
 						this.graphic = new Image(HAPPY_ANGRY_SPRITE);
 					}
 				} else if (emotion == "sad") {
+					sfxSad.play();
 					sadness++;
 					if (sadness >= happiness && sadness >= anger) {
 						currentEmotion = "sad";
