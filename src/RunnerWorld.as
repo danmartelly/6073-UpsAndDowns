@@ -30,24 +30,37 @@ package
 			time += 1;
 			
 			// Create a new collectible every 2 seconds
-			if (time % (SECONDS * 2) == 0) { 
-				var randomX:Number = Math.ceil(Math.random() * 100+50);
-				var xVal:Number = player.x + randomX;
+		/*	if (time % (SECONDS * 2) == 0) { 
+				//var randomX:Number = Math.ceil(Math.random() * 100+50);
+				var xVal:Number = 800;
 				var yVal:Number = player.y;
 				
 				add(new Collectible(xVal, yVal));
 			}
+		*/
 			
-			if (time % (SECONDS * 2) == 1) {
+			if (time % (SECONDS * 3) == 1) {
 				var randomY:Number = Math.ceil(Math.random() * 400-50);
 				var newPlat:Platform = new Platform();
-				newPlat.init(Math.random()*500+100, 500, randomY);
+				newPlat.init(Math.random() * 500 + 100, 500, randomY);
+				if (Math.random() > .5) {
+					trace("yay we got lucky");
+					var xVal1:Number = 500 + Math.random() * 200;
+					var yVal1:Number = randomY2 - Math.random() * 75 - 25;
+					add(new Collectible(xVal1, yVal1));
+				}
 				add(newPlat);
 			}
-			if (time % (SECONDS * 3) == 1) {
+			if (time % (SECONDS * 2) == 1) {
 				var randomY2:Number = Math.ceil(-Math.random() * 200+500);
 				var newPlat2:Platform = new Platform();
-				newPlat2.init(Math.random()*600+100, 500, randomY2);
+				newPlat2.init(Math.random() * 600 + 100, 500, randomY2);
+				if (Math.random() > .5) {
+					trace("yay we got lucky");
+					var xVal:Number = 500 + Math.random() * 200;
+					var yVal:Number = randomY2 - Math.random() * 75 - 25;
+					add(new Collectible(xVal, yVal));
+				}
 				add(newPlat2);
 			}
 			

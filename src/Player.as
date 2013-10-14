@@ -79,8 +79,11 @@ package
 					sfxHappy.play();
 					happiness++;
 					if (happiness >= sadness && happiness >= anger) {
-						currentEmotion = "happy";
+						if (currentEmotion == "sad") {
+							this.y += 20;
+						}
 						setHitbox(50, 50);
+						currentEmotion = "happy";
 						if (sadness >= anger){
 							this.graphic = new Image(HAPPY_SAD_SPRITE);
 						} else {
@@ -100,8 +103,11 @@ package
 					sfxAngry.play();
 					anger++;
 					if (anger >= happiness && anger >= sadness) {
-						currentEmotion = "angry";
+						if (currentEmotion == "sad") {
+							this.y += 20;
+						}
 						setHitbox(50, 50);
+						currentEmotion = "angry";
 						if (happiness >= sadness){
 							this.graphic = new Image(ANGRY_HAPPY_SPRITE);
 						} else {
