@@ -119,6 +119,7 @@ package
 					sadness++;
 					if (sadness >= happiness && sadness >= anger) {
 						currentEmotion = "sad";
+						setHitbox(16, 30);
 						if (happiness >= anger){
 							this.graphic = new Image(SAD_HAPPY_SPRITE);
 						} else {
@@ -147,7 +148,7 @@ package
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
-			if (this.y + 50 == e.y){
+			if (this.y + 50 == e.y || (this.currentEmotion == "sad" && this.y + 30 == e.y)){
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
