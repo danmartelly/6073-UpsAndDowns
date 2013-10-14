@@ -59,7 +59,7 @@ package
 				e.update();
 			}
 			
-			if (player.y > 900) {
+			if (player.x < 0 || player.y > FP.screen.height) {
 				FP.world = new GameOver;
 			}
 		}
