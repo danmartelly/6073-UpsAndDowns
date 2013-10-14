@@ -58,6 +58,10 @@ package
 			for each (var e:Entity in entityList) {
 				e.update();
 			}
+			
+			if (player.y > 900) {
+				FP.world = new GameOver;
+			}
 		}
 	}
 
