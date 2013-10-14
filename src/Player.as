@@ -2,6 +2,7 @@ package
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.FP;
@@ -31,6 +32,14 @@ package
 		[Embed(source = 'assets/Player_v0_ah.png')] private const ANGRY_HAPPY_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_as.png')] private const ANGRY_SAD_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_hs.png')] private const PLAYER:Class;
+		[Embed(source = 'assets/HappySound.mp3')] private const HAPPY_SOUND:Class;
+		[Embed(source = 'assets/AngrySound.mp3')] private const ANGRY_SOUND:Class;
+		//[Embed(source = 'assets/SadSound.wav', mimeType = 'application/octet-stream')] private const SAD_SOUND:Class;
+		
+		private var sfxHappy:Sfx = new Sfx(HAPPY_SOUND);
+		private var sfxAngry:Sfx = new Sfx(ANGRY_SOUND);
+		//private var sfxAngry:Sfx = new Sfx(ANGRY_SOUND);
+		
 		public function Player() 
 		{
 			this.graphic = new Image(PLAYER);
@@ -61,6 +70,7 @@ package
 			if (c) {
 				var emotion:String = c.getEmotion();
 				if (emotion == "happy") {
+					sfxHappy.play();
 					happiness++;
 					if (happiness >= sadness && happiness >= anger) {
 						currentEmotion = "happy";
@@ -79,6 +89,7 @@ package
 						this.graphic = new Image(SAD_HAPPY_SPRITE);
 					}
 				} else if (emotion == "angry") {
+					sfxAngry.play();
 					anger++;
 					if (anger >= happiness && anger >= sadness) {
 						currentEmotion = "angry";

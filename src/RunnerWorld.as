@@ -58,8 +58,8 @@ package
 			for each (var e:Entity in entityList) {
 				e.update();
 			}
-			
-			if (player.y > 900) {
+			//death conditions
+			if (player.x < 0 || player.y > FP.screen.height) {
 				FP.world = new GameOver;
 			}
 		}
