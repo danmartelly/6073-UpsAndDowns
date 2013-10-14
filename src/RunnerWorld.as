@@ -19,9 +19,9 @@ package
 			
 			
 			var plat:Platform = new Platform();
-			plat.init(300, 0, 400);
+			plat.init(300, 0, 300);
 			var plat2:Platform = new Platform();
-			plat2.init(800, 0, 500);
+			plat2.init(800, 0, 400);
 			add(plat);
 			add(plat2);
 		}
@@ -39,13 +39,13 @@ package
 			}
 			
 			if (time % (SECONDS * 2) == 1) {
-				var randomY:Number = Math.ceil(Math.random() * 400+50);
+				var randomY:Number = Math.ceil(Math.random() * 400-50);
 				var newPlat:Platform = new Platform();
 				newPlat.init(Math.random()*500+100, 500, randomY);
 				add(newPlat);
 			}
 			if (time % (SECONDS * 3) == 1) {
-				var randomY2:Number = Math.ceil(-Math.random() * 200+600);
+				var randomY2:Number = Math.ceil(-Math.random() * 200+500);
 				var newPlat2:Platform = new Platform();
 				newPlat2.init(Math.random()*600+100, 500, randomY2);
 				add(newPlat2);

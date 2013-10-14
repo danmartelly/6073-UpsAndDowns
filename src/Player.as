@@ -80,6 +80,7 @@ package
 					happiness++;
 					if (happiness >= sadness && happiness >= anger) {
 						currentEmotion = "happy";
+						setHitbox(50, 50);
 						if (sadness >= anger){
 							this.graphic = new Image(HAPPY_SAD_SPRITE);
 						} else {
@@ -99,6 +100,7 @@ package
 					anger++;
 					if (anger >= happiness && anger >= sadness) {
 						currentEmotion = "angry";
+						setHitbox(50, 50);
 						if (happiness >= sadness){
 							this.graphic = new Image(ANGRY_HAPPY_SPRITE);
 						} else {
