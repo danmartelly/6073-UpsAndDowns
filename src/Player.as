@@ -95,6 +95,7 @@ package
 						this.graphic = new Image(SAD_HAPPY_SPRITE);
 					}
 				} else if (emotion == "angry") {
+					sfxAngry.volume = 0.65;
 					sfxAngry.play();
 					anger++;
 					if (anger >= happiness && anger >= sadness) {
