@@ -188,7 +188,7 @@ package
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
-			if (this.y + 50 == e.y || (this.currentEmotion == "sad" && this.y + 30 == e.y)){
+			if (Math.abs(this.y + 50 - e.y) < 1. || (this.currentEmotion == "sad" && Math.abs(this.y + 30 - e.y) < 1.)){
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
