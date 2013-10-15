@@ -13,7 +13,7 @@ package
 		private var platforms:Array;
 		private var collectibles:Array;
 		private var defaultSpeed:Number = 2;
-		private var currentSpeed:Number = 3;
+		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
 		
 		private var nextPlatform:Platform = null;
@@ -43,11 +43,11 @@ package
 			
 			if (nextPlatform.x + nextPlatform.width < FP.width) {
 				var shouldGoUp:Boolean = (nextPlatform.y > FP.height * Math.random());
+				var shouldMakeCollectible:Boolean = (0.5 > Math.random());
 				var nextY:Number;
-				trace(shouldGoUp);
 				
 				if (shouldGoUp) {
-					nextY = nextPlatform.y - 100 * Math.random();
+					nextY = nextPlatform.y - 30 * Math.random();
 					if (nextY < 5) nextY = 5;
 					
 					initPlatform(	300 + 400 * Math.random(), 
@@ -60,9 +60,14 @@ package
 					if (nextY > FP.height - nextPlatform.height - 5) nextY = FP.height - nextPlatform.height - 5;
 					
 					initPlatform(	300 + 400 * Math.random(), 
-									nextPlatform.x + nextPlatform.width + 50 + 80 * Math.random(),
+									nextPlatform.x + nextPlatform.width + 20 + 40 * Math.random() + Math.sqrt((nextY - nextPlatform.y) / 4),
 									nextY,
 									currentSpeed   );
+				}
+				
+				if (shouldMakeCollectible) {
+					var coll:Collectible = new Collectible(nextPlatform.x + Math.random() * nextPlatform.width, nextPlatform.y - 30 - 50*Math.random(), currentSpeed);
+					collectibles.push(coll);
 				}
 			}
 			
