@@ -24,7 +24,6 @@ package
 		
 		public function init(width:Number, xPos:Number, yPos:Number, speed:Number):void
 		{
-			
 			var rectBitmap:BitmapData = new BitmapData(width, platformHeight, false, 0x99999999)
 			this.graphic = new Image(rectBitmap);
 			this.setHitbox(width, platformHeight);

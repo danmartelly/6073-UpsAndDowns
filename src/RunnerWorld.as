@@ -37,6 +37,20 @@ package
 			nextPlatform = p;
 		}
 		
+		public function makeCrannyTrap():void {
+			var c:Platform = nextPlatform;
+			var coll:Collectible = new Collectible(nextPlatform.x + 200, nextPlatform.y - 40, currentSpeed);
+			
+			collectibles.push(coll);
+			add(coll);
+			
+			for (var n:int = 55; n <= 135; n += 20) {
+				initPlatform(200, c.x + 500, c.y - n, currentSpeed);
+			}
+			
+			nextPlatform = c;
+		}
+		
 		override public function update():void {
 			time += 1;
 			
@@ -49,7 +63,7 @@ package
 					nextY = nextPlatform.y - 30 - 40 * Math.random();
 					if (nextY < 5) nextY = 5;
 					
-					initPlatform(	300 + 400 * Math.random(), 
+					initPlatform(	500 + 600 * Math.random(), 
 									nextPlatform.x + nextPlatform.width + 50 + 30 * Math.random(),
 									nextY,
 									currentSpeed   );
@@ -58,14 +72,17 @@ package
 					nextY = nextPlatform.y + 50 + 200 * Math.random();
 					if (nextY > FP.height - nextPlatform.height - 5) nextY = FP.height - nextPlatform.height - 5;
 					
-					initPlatform(	300 + 400 * Math.random(), 
+					initPlatform(	500 + 600 * Math.random(), 
 									nextPlatform.x + nextPlatform.width + 20 + 40 * Math.random() + Math.sqrt((nextY - nextPlatform.y) / 4),
 									nextY,
 									currentSpeed   );
 				}
 				
-				if (shouldMakeCollectible) {
-					var coll:Collectible = new Collectible(nextPlatform.x + Math.random() * nextPlatform.width, nextPlatform.y - 30 - 50*Math.random(), currentSpeed);
+				if (nextPlatform.width >= 800 && nextPlatform.y > 200 && Math.random() < 0.5) {
+					makeCrannyTrap();
+				}
+				else if (shouldMakeCollectible) {
+					var coll:Collectible = new Collectible(nextPlatform.x + Math.random() * nextPlatform.width, nextPlatform.y - 40, currentSpeed);
 					collectibles.push(coll);
 					
 					add(coll);
