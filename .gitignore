@@ -1,4 +1,5 @@
 /bin/*
+/obj/*
 /bin-debug/*
 /html-template/*
 *.as3proj
