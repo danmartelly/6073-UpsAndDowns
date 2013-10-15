@@ -206,14 +206,16 @@ package
 				}
 			}
 			// otherwise, treat as a general platform
-			if (Math.abs(this.y + 50 - e.y) < 1. || (this.currentEmotion == "sad" && Math.abs(this.y + 30 - e.y) < 1.)){
+			trace(this.y);
+			trace(e.y);
+			if ((Math.abs(this.y + 50 - e.y) < 1.) || (Math.abs(this.y + 30 - e.y) < 1.)){
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
 			} else if (this.x <= e.x){
 				this.x -= 4;
 			} else {
-				this.y += 10;
+				this.y -= 50;
 				ySpeed += gravity;
 			}
 			return true;
