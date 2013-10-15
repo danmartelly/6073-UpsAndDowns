@@ -15,6 +15,7 @@ package
 		private var defaultSpeed:Number = 4;
 		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
+		public var level:Number;
 		
 		private var nextPlatform:Platform = null;
 		
@@ -25,6 +26,8 @@ package
 			
 			platforms = new Array();
 			collectibles = new Array();
+			
+			level = 1;
 			
 			initPlatform(800, 0, 400, currentSpeed);
 		}
@@ -39,7 +42,7 @@ package
 		
 		public function makeCrannyTrap():void {
 			var c:Platform = nextPlatform;
-			var coll:Collectible = new Collectible(nextPlatform.x + 200, nextPlatform.y - 40, currentSpeed);
+			var coll:Collectible = new Collectible(nextPlatform.x + 200, nextPlatform.y - 40, this.level, currentSpeed);
 			
 			collectibles.push(coll);
 			add(coll);
@@ -82,7 +85,7 @@ package
 					makeCrannyTrap();
 				}
 				else if (shouldMakeCollectible) {
-					var coll:Collectible = new Collectible(nextPlatform.x + Math.random() * nextPlatform.width, nextPlatform.y - 40, currentSpeed);
+					var coll:Collectible = new Collectible(nextPlatform.x + Math.random() * nextPlatform.width, nextPlatform.y - 40, this.level, currentSpeed);
 					collectibles.push(coll);
 					
 					add(coll);
