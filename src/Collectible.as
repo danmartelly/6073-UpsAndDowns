@@ -7,17 +7,19 @@ package
 	public class Collectible extends Entity
 	{
 		private var emotion:String;
+		public var speed:Number = 2;
 		[Embed(source = 'assets/HappyFlower.png')] private const HAPPY_SPRITE:Class;
 		[Embed(source = 'assets/SadCloud.png')] private const SAD_SPRITE:Class;
 		[Embed(source = 'assets/AngryBolt.png')] private const ANGRY_SPRITE:Class;
 		
-		public function Collectible(xVal:Number, yVal:Number) 
+		public function Collectible(xVal:Number, yVal:Number, speed:Number) 
 		{
 			this.x = xVal;
 			this.y = yVal;
 			this.type = "collectible";
 			this.setHitbox(25, 25);
 			this.setEmotion();
+			this.speed = speed;
 		}
 		
 		public function getEmotion():String {
@@ -50,7 +52,7 @@ package
 		
 		override public function update():void
 		{
-			moveBy( -2, 0);
+			moveBy( -speed, 0);
 		}
 	}
 }
