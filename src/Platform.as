@@ -7,6 +7,7 @@ package
 	public class Platform extends Entity
 	{
 		private const platformHeight:Number = 20;
+		public var speed:Number = 2;
 		public function Platform() 
 		{
 			var platformWidth:int = 400;
@@ -21,19 +22,19 @@ package
 			this.type = "platform";
 		}
 		
-		public function init(width:Number, xPos:Number, yPos:Number):void
+		public function init(width:Number, xPos:Number, yPos:Number, speed:Number):void
 		{
-			
 			var rectBitmap:BitmapData = new BitmapData(width, platformHeight, false, 0x99999999)
 			this.graphic = new Image(rectBitmap);
 			this.setHitbox(width, platformHeight);
 			this.y = yPos;
 			this.x = xPos;
+			this.speed = speed;
 		}
 		
 		override public function update():void
 		{
-			moveBy( -2, 0);
+			moveBy( -speed, 0);
 		}
 	}
 

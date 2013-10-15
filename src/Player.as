@@ -13,17 +13,25 @@ package
 	{
 		/* A lot of help came from here: http://www.emanueleferonato.com/2011/05/30/creation-of-a-platform-game-using-flashpunk-step-2/
 		*/
+		private var runWorld:RunnerWorld;
 		private const maxYVel:Number = 10;
 		private const jumpSpeed:Number = 12;
 		private const gravity:Number = .5;
 		private const xPos:Number = 20;
+		private const dashingCooldown:Number = 2; //in seconds
+		private const lengthOfDashing:Number = 1; //in seconds
+		private const dashSpeed:Number = 9;
 		private var ySpeed:Number = 0;
 		private var doubleJumped:Boolean;
 		private var onPlatform:Boolean;
+		private var currentlyDashing:Boolean = false;
+		private var lastDashingTime:Number = 0;
+		private var time:Number = 0;
 		private var happiness:Number = 0;
 		private var sadness:Number = 0;
 		private var anger:Number = 0;
 		private var currentEmotion:String = "happy";
+		private var story:Story;
 		
 		[Embed(source = 'assets/Player_v0_hs.png')] private const HAPPY_SAD_SPRITE:Class;
 		[Embed(source = 'assets/Player_v0_ha.png')] private const HAPPY_ANGRY_SPRITE:Class;
@@ -40,15 +48,20 @@ package
 		private var sfxAngry:Sfx = new Sfx(ANGRY_SOUND);
 		private var sfxSad:Sfx = new Sfx(SAD_SOUND);
 		
-		public function Player() 
+		public function Player(runWorld:RunnerWorld) 
 		{
 			this.graphic = new Image(PLAYER);
 			this.x = xPos;
 			setHitbox(26, 50);
+			this.story = new Story();
+			trace(this.story);
+			FP.world.add(this.story);
+			this.runWorld = runWorld;
 		}
 		
 		override public function update():void
 		{			
+			time += FP.elapsed;
 			if (Input.pressed(Key.UP) && onPlatform) {
 				// you can always jump if you're on a platform
 				ySpeed = -jumpSpeed;
@@ -65,6 +78,21 @@ package
 			} else {
 				ySpeed += gravity;
 			}
+			
+			// dashing code
+			if (Input.pressed(Key.RIGHT) && !currentlyDashing && currentEmotion == "angry") {
+				// at the beginning it's not possible to dash for a small time
+				if (time > (lastDashingTime  + dashingCooldown + lengthOfDashing)) { 
+					currentlyDashing = true;
+					lastDashingTime = time;
+					runWorld.changeSpeed(dashSpeed);
+				}
+			}
+			if (time > lastDashingTime + lengthOfDashing) {
+				currentlyDashing = false;
+				runWorld.resetSpeed();
+			}
+			
 			
 			//clip velocities
 			ySpeed = Math.min(ySpeed, maxYVel);
@@ -84,6 +112,8 @@ package
 						}
 						setHitbox(50, 50);
 						currentEmotion = "happy";
+						//var story:Story = world.getInstance("story");
+						this.story.showText("happy");
 						if (sadness >= anger){
 							this.graphic = new Image(HAPPY_SAD_SPRITE);
 						} else {
@@ -108,6 +138,7 @@ package
 						}
 						setHitbox(50, 50);
 						currentEmotion = "angry";
+						this.story.showText("angry");
 						if (happiness >= sadness){
 							this.graphic = new Image(ANGRY_HAPPY_SPRITE);
 						} else {
@@ -127,6 +158,7 @@ package
 					sadness++;
 					if (sadness >= happiness && sadness >= anger) {
 						currentEmotion = "sad";
+						this.story.showText("sad");
 						setHitbox(16, 30);
 						if (happiness >= anger){
 							this.graphic = new Image(SAD_HAPPY_SPRITE);
@@ -156,7 +188,7 @@ package
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
-			if (this.y + 50 == e.y || (this.currentEmotion == "sad" && this.y + 30 == e.y)){
+			if (Math.abs(this.y + 50 - e.y) < 1. || (this.currentEmotion == "sad" && Math.abs(this.y + 30 - e.y) < 1.)){
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
