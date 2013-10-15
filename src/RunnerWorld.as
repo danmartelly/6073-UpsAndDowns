@@ -26,7 +26,6 @@ package
 			platforms = new Array();
 			collectibles = new Array();
 			
-			initPlatform(300, 0, 300, currentSpeed);
 			initPlatform(800, 0, 400, currentSpeed);
 		}
 		public function initPlatform(width:Number, xPos:Number, yPos:Number, speed:Number):void {
