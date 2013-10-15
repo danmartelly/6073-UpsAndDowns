@@ -29,7 +29,7 @@ package
 			initPlatform(300, 0, 300, currentSpeed);
 			initPlatform(800, 0, 400, currentSpeed);
 		}
-		public function initPlatform(width:Number, xPos:Number, yPos:Number, speed:Number) {
+		public function initPlatform(width:Number, xPos:Number, yPos:Number, speed:Number):void {
 			var p:Platform = new Platform();
 			p.init(width, xPos, yPos, speed);
 			add(p);
@@ -44,7 +44,7 @@ package
 			if (nextPlatform.x + nextPlatform.width < FP.width) {
 				var shouldGoUp:Boolean = (nextPlatform.y > FP.height * Math.random());
 				var nextY:Number;
-				trace(shouldGoUp)
+				trace(shouldGoUp);
 				
 				if (shouldGoUp) {
 					nextY = nextPlatform.y - 100 * Math.random();
