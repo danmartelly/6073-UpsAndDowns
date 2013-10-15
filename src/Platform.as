@@ -7,6 +7,7 @@ package
 	public class Platform extends Entity
 	{
 		public var speed:Number = 2;
+		public var color:Number = 0x99999999;
 		public function Platform() 
 		{
 			var platformWidth:int = 400;
@@ -23,7 +24,7 @@ package
 		
 		public function init(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void
 		{
-			var rectBitmap:BitmapData = new BitmapData(width, height, false, 0x99999999)
+			var rectBitmap:BitmapData = new BitmapData(width, height, false, color)
 			this.graphic = new Image(rectBitmap);
 			this.setHitbox(width, height);
 			this.y = yPos;

@@ -8,6 +8,7 @@ package
 		public function BreakableObstacle() 
 		{
 			super();
+			this.color = 0x99449999; // it's a bluish color
 		}
 		
 		public function destroy():void {
