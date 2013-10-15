@@ -12,8 +12,8 @@ package
 		private var time:Number = 0;
 		private var platforms:Array;
 		private var collectibles:Array;
-		private var defaultSpeed:Number = 2;
-		private var currentSpeed:Number = 4;
+		private var defaultSpeed:Number = 6;
+		private var currentSpeed:Number = 6;
 		private const SECONDS:Number = 60;
 		
 		private var nextPlatform:Platform = null;
@@ -47,7 +47,7 @@ package
 				var nextY:Number;
 				
 				if (shouldGoUp) {
-					nextY = nextPlatform.y - 30 * Math.random();
+					nextY = nextPlatform.y - 30 - 40 * Math.random();
 					if (nextY < 5) nextY = 5;
 					
 					initPlatform(	300 + 400 * Math.random(), 
@@ -68,6 +68,8 @@ package
 				if (shouldMakeCollectible) {
 					var coll:Collectible = new Collectible(nextPlatform.x + Math.random() * nextPlatform.width, nextPlatform.y - 30 - 50*Math.random(), currentSpeed);
 					collectibles.push(coll);
+					
+					add(coll);
 				}
 			}
 			
