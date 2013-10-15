@@ -13,8 +13,10 @@ package
 		private var platforms:Array;
 		private var collectibles:Array;
 		private var defaultSpeed:Number = 2;
-		private var currentSpeed:Number = 2;
+		private var currentSpeed:Number = 3;
 		private const SECONDS:Number = 60;
+		
+		private var nextPlatform:Platform = null;
 		
 		public function RunnerWorld() 
 		{
@@ -23,53 +25,45 @@ package
 			
 			platforms = new Array();
 			collectibles = new Array();
-			var plat:Platform = new Platform();
-			plat.init(300, 0, 300, currentSpeed);
-			add(plat);
-			platforms.push(plat);
 			
-			plat = new Platform();
-			plat.init(800, 0, 400, currentSpeed);
-			add(plat);
-			platforms.push(plat);
+			initPlatform(300, 0, 300, currentSpeed);
+			initPlatform(800, 0, 400, currentSpeed);
+		}
+		public function initPlatform(width:Number, xPos:Number, yPos:Number, speed:Number) {
+			var p:Platform = new Platform();
+			p.init(width, xPos, yPos, speed);
+			add(p);
+			platforms.push(p);
+			
+			nextPlatform = p;
 		}
 		
 		override public function update():void {
 			time += 1;
 			
-			// higher platforms--rarer since less easy to get to
-			if (time % (SECONDS * 3) == 1) {
-				var randomY:Number = Math.ceil(Math.random() * 400-50);
-				var newPlat:Platform = new Platform();
-				newPlat.init(Math.random() * 500 + 100, 500, randomY, currentSpeed);
-				if (Math.random() > .5) {
-					var xVal1:Number = 500 + Math.random() * 200;
-					var yVal1:Number = randomY2 - Math.random() * 75 - 25;
-					var coll:Collectible = new Collectible(xVal1, yVal1, currentSpeed);
-					collectibles.push(coll);
-					add(coll);
-				}
-				platforms.push(newPlat);
-				add(newPlat);
-			}
-			
-			// low-ish platforms
-			if (time % (SECONDS * 2) == 1) {
-				var randomY2:Number = Math.ceil(-Math.random() * 200+500);
-				var newPlat2:Platform = new Platform();
-				newPlat2.init(Math.random() * 600 + 100, 500, randomY2, currentSpeed);
+			if (nextPlatform.x + nextPlatform.width < FP.width) {
+				var shouldGoUp:Boolean = (nextPlatform.y > FP.height * Math.random());
+				var nextY:Number;
+				trace(shouldGoUp)
 				
-				//50% chance for powerup to be attached to platform
-				newPlat2.init(Math.random() * 600 + 100, 500, randomY2, currentSpeed);
-				if (Math.random() > .5) {
-					var xVal:Number = 500 + Math.random() * 200;
-					var yVal:Number = randomY2 - Math.random() * 75 - 25;
-					var coll2:Collectible = new Collectible(xVal, yVal, currentSpeed);
-					collectibles.push(coll2);
-					add(coll2);
+				if (shouldGoUp) {
+					nextY = nextPlatform.y - 100 * Math.random();
+					if (nextY < 5) nextY = 5;
+					
+					initPlatform(	300 + 400 * Math.random(), 
+									nextPlatform.x + nextPlatform.width + 50 + 30 * Math.random(),
+									nextY,
+									currentSpeed   );
 				}
-				platforms.push(newPlat2);
-				add(newPlat2);
+				else {
+					nextY = nextPlatform.y + 50 + 200 * Math.random();
+					if (nextY > FP.height - nextPlatform.height - 5) nextY = FP.height - nextPlatform.height - 5;
+					
+					initPlatform(	300 + 400 * Math.random(), 
+									nextPlatform.x + nextPlatform.width + 50 + 80 * Math.random(),
+									nextY,
+									currentSpeed   );
+				}
 			}
 			
 			// Update all objects in RunnerWorld
