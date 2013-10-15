@@ -16,11 +16,13 @@ package
 		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
 		public var level:Number;
+
 		
 		private var nextPlatform:Platform = null;
 		
 		public function RunnerWorld() 
 		{
+			
 			player = new Player(this);
 			add(player);
 			
