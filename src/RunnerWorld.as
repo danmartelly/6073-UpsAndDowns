@@ -1,6 +1,7 @@
 package  
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.World;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;	
@@ -18,13 +19,21 @@ package
 		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
 		public var level:Number;
+		public var counter:Number;
+		public var s:Text;
+		public var totTime:Number  = 0;
+
+
+		private var f:Entity = new Entity(280, 100, s);
+
 
 		
 		private var nextPlatform:Platform = null;
 		
 		public function RunnerWorld() 
 		{
-			
+			add(f);
+
 			player = new Player(this);
 			add(player);
 			
@@ -67,8 +76,33 @@ package
 			nextPlatform = c;
 		}
 		
+		public function writeTime(totTime:Number):void {
+			var timer:Number = 30 - totTime;
+			
+			if (timer >= 0)
+			{
+				FP.world.remove(f);
+				s = new Text(timer.toString());
+				s.color = 0xFFFFFF;
+				s.align = "center";
+				trace(s.text);
+				f = new Entity(150,150, s);
+				FP.world.add(f);
+			}
+			else {
+				FP.world = new Title;
+			}
+		}
+		
 		override public function update():void {
 			time += 1;
+			counter = FP.elapsed;
+			
+
+			totTime  = totTime + counter;
+
+			writeTime(totTime);
+			add(f);
 			
 			if (nextPlatform.x + nextPlatform.width < FP.width) {
 				var shouldGoUp:Boolean = (nextPlatform.y > FP.height * Math.random());

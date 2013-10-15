@@ -10,13 +10,17 @@ package
 	{
 		private var t:Text;
 		private var e:Entity;
+		private var f:Entity;
 		private var s:Text;
 		private var counter:Number = 0;
+		private var time:Number;
 		
 		public function Story() {
 			name = "story";
 			this.t = new Text("");
 			this.e = new Entity(FP.halfWidth - (t.width / 2), FP.halfHeight + 250 - (t.height / 2), t);
+			this.f = new Entity(FP.halfWidth - (t.width / 2), FP.halfHeight + 250 - (t.height / 2), t);
+
 		}
 
 		public function showText(emotion:String):void {
@@ -33,25 +37,6 @@ package
 			e = new Entity(FP.halfWidth - (t.width / 2), FP.halfHeight + 250 - (t.height / 2), t);
 			FP.world.add(e);
 		}
-		
-		override public function update():void {
 			
-			counter = FP.elapsed;
-			if (counter <= 30)
-			{
-				s = new Text("derp",0,0,640,480);
-				s.color = 0x00ff00;
-				s.size = 32;
-				var splashEntity:Entity = new Entity(0,0,s);
-				splashEntity.x = 280;
-				splashEntity.y = 100;
-				FP.world.add(splashEntity);
-			}
-			else 
-			{
-				FP.world = new Title;
-			}
-			
-		}
 	}
 }
