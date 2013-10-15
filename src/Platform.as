@@ -6,7 +6,6 @@ package
 	
 	public class Platform extends Entity
 	{
-		private const platformHeight:Number = 20;
 		public var speed:Number = 2;
 		public function Platform() 
 		{
@@ -22,11 +21,11 @@ package
 			this.type = "platform";
 		}
 		
-		public function init(width:Number, xPos:Number, yPos:Number, speed:Number):void
+		public function init(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void
 		{
-			var rectBitmap:BitmapData = new BitmapData(width, platformHeight, false, 0x99999999)
+			var rectBitmap:BitmapData = new BitmapData(width, height, false, 0x99999999)
 			this.graphic = new Image(rectBitmap);
-			this.setHitbox(width, platformHeight);
+			this.setHitbox(width, height);
 			this.y = yPos;
 			this.x = xPos;
 			this.speed = speed;

@@ -183,11 +183,29 @@ package
 		}
 		
 		override public function moveCollideX(e:Entity):Boolean {
+			if (e is BreakableObstacle) {
+				// check if the player is dashing
+				if (currentlyDashing) {
+					// if yes, destroy the obstacle!
+					(e as BreakableObstacle).destroy();
+					return true;
+				}
+			}
+			// otherwise, treat as a general platform
 			this.x -= 4;
 			return true; 
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
+			if (e is BreakableObstacle) {
+				// check if the player is dashing
+				if (currentlyDashing) {
+					// if yes, destroy the obstacle!
+					(e as BreakableObstacle).destroy();
+					return true;
+				}
+			}
+			// otherwise, treat as a general platform
 			if (Math.abs(this.y + 50 - e.y) < 1. || (this.currentEmotion == "sad" && Math.abs(this.y + 30 - e.y) < 1.)){
 				doubleJumped = false;
 				onPlatform = true;

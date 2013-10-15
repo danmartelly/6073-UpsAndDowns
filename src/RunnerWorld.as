@@ -8,6 +8,8 @@ package
 
 	public class RunnerWorld extends World
 	{
+		private const platformHeight:Number = 20;
+		private const obstacleHeight:Number = 50;
 		private var player:Player;
 		private var time:Number = 0;
 		private var platforms:Array;
@@ -29,15 +31,24 @@ package
 			
 			level = 1;
 			
-			initPlatform(800, 0, 400, currentSpeed);
+			initPlatform(800, platformHeight, 0, 400, currentSpeed);
 		}
-		public function initPlatform(width:Number, xPos:Number, yPos:Number, speed:Number):void {
+		public function initPlatform(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void {
 			var p:Platform = new Platform();
-			p.init(width, xPos, yPos, speed);
+			p.init(width, height, xPos, yPos, speed);
 			add(p);
 			platforms.push(p);
 			
 			nextPlatform = p;
+		}
+		
+		public function initBreakable(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void {
+			var b:BreakableObstacle = new BreakableObstacle();
+			b.init(width, height, xPos, yPos, speed);
+			add(b);
+			platforms.push(b);
+			
+			nextPlatform = b;
 		}
 		
 		public function makeCrannyTrap():void {
@@ -48,7 +59,7 @@ package
 			add(coll);
 			
 			for (var n:int = 55; n <= 135; n += 20) {
-				initPlatform(200, c.x + 500, c.y - n, currentSpeed);
+				initBreakable(200, platformHeight, c.x + 500, c.y - n, currentSpeed);
 			}
 			
 			nextPlatform = c;
@@ -66,7 +77,7 @@ package
 					nextY = nextPlatform.y - 30 - 40 * Math.random();
 					if (nextY < 5) nextY = 5;
 					
-					initPlatform(	500 + 600 * Math.random(), 
+					initPlatform(	500 + 600 * Math.random(), platformHeight, 
 									nextPlatform.x + nextPlatform.width + 50 + 30 * Math.random(),
 									nextY,
 									currentSpeed   );
@@ -75,7 +86,7 @@ package
 					nextY = nextPlatform.y + 50 + 200 * Math.random();
 					if (nextY > FP.height - nextPlatform.height - 5) nextY = FP.height - nextPlatform.height - 5;
 					
-					initPlatform(	500 + 600 * Math.random(), 
+					initPlatform(	500 + 600 * Math.random(), platformHeight,
 									nextPlatform.x + nextPlatform.width + 20 + 40 * Math.random() + Math.sqrt((nextY - nextPlatform.y) / 4),
 									nextY,
 									currentSpeed   );
