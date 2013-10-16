@@ -13,16 +13,17 @@ package
 		private const platformHeight:Number = 20;
 		private const obstacleHeight:Number = 50;
 		private var player:Player;
+		public var meter:Meter;
 		private var time:Number = 0;
 		private var platforms:Array;
 		private var collectibles:Array;
-		private var defaultSpeed:Number = 10;
-		private var currentSpeed:Number = 10;
 		private const SECONDS:Number = 60;
 		public var level:Number;
 		public var s:Text;
 		public var totTime:Number  = 0;
 		public var counter:Number = 0;
+		public var defaultSpeed:Number = 10;
+		public var currentSpeed:Number = 10;
 
 		private var background:Entity;
 		private var f:Entity = new Entity(280, 100, s);
@@ -35,7 +36,6 @@ package
 		
 		public function RunnerWorld(levelNum:Number = 1) 
 		{
-			writeTime(0);
 			f = new Entity(350, 50, s);
 			var backgroundImage:Class = [KID_BACKGROUND_IMAGE, WORK_BACKGROUND_IMAGE, HOSPITAL_BACKGROUND_IMAGE][levelNum-1];
 			background = new Entity(0, 0, new Image(backgroundImage));
@@ -45,12 +45,18 @@ package
 			player = new Player(this);
 			add(player);
 			
+			meter = new Meter();
+			add(meter);
+			
 			platforms = new Array();
 			collectibles = new Array();
 			
 			level = levelNum;
+			currentSpeed = 3 + level;
 			
 			initPlatform(800, platformHeight, 0, 400, currentSpeed);
+			
+			writeTime(0);
 		}
 		public function initPlatform(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void {
 			var p:Platform = new Platform();
@@ -85,7 +91,7 @@ package
 		}
 		
 		public function writeTime(totTime:Number):void {
-			var timer:Number = 30 - totTime;
+			var timer:Number = 20 + 10*level - totTime;
 			var tim:int = int(timer);
 			
 			if (timer >= 0)

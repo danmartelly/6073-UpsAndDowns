@@ -19,13 +19,15 @@ package
 		private var angryStories:Array = [["Man, I hated school. What a horrible place. Books and teachers and homework—and even worse, other kids. They might as well call it prison camp.",
 										"Mom made me eat broccoli every day. Now just the thought of it makes me want to projectile vomit."], //level1
 										
-										["The boss just kept yelling at me for nothing. No one appreciates me. They'll just have to wait and see what I do."], //level2
+										["The boss just kept yelling at me for nothing. No one appreciates me. They'll just have to wait and see what I do.",
+										"I got glossed over for a promotion by my idiot boss, again and again. Never got it. God, I wanted to smash his fat horse face into a brick wall."], //level2
 										
 										["With all this iBooks and GameBoxes and whatnot, no one knows how to talk to people anymore. This world’s going to hell in a handbasket! I’m glad I’ll be dead soon."] //level3
 										];
 		private var happyStories:Array = [["When I was a kid, I had the cutest little puppy. We did everything together. He made me the happiest boy in the world."],
 										
-										["Work was great. I was respected and everything was going well at home."], //level2
+										["Work was great. I was respected and everything was going well at home.",
+										"I made boatloads of cash at work. And I mean that literally, there wasn't enough space to put it all on my yacht."], //level2
 										
 										["The home was great. A life of shuffleboard, complaining, and desperate widows? I thought I’d died and gone to heaven."] //level3
 										];

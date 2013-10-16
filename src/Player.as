@@ -20,7 +20,7 @@ package
 		private const xPos:Number = 20;
 		private const dashingCooldown:Number = 2; //in seconds
 		private const lengthOfDashing:Number = 1; //in seconds
-		private const dashSpeed:Number = 21;
+		private const dashSpeed:Number = 12;
 		private var ySpeed:Number = 0;
 		private var doubleJumped:Boolean;
 		private var onPlatform:Boolean;
@@ -175,6 +175,8 @@ package
 						this.graphic = new Image(HAPPY_SAD_SPRITE);
 					}
 				}
+				
+				runWorld.meter.updateMeter(happiness, sadness, anger);
 				c.destroy();
 			}
 			
@@ -212,8 +214,9 @@ package
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
-			} else if (this.x <= e.x){
-				this.x -= 4;
+			} else if (this.x <= e.x) {
+				runWorld.resetSpeed();
+				this.x -= runWorld.defaultSpeed;
 			} else {
 				this.y -= 50;
 				ySpeed += gravity;
