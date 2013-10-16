@@ -23,9 +23,20 @@ package
 			level1dict["happy"] = HAPPY1_SPRITE;
 			level1dict["sad"] = SAD1_SPRITE;
 			level1dict["angry"] = ANGRY1_SPRITE;
-			//if there were more levels, do the same thing here
+			//level 1
+			var level2dict:Dictionary = new Dictionary();
+			level2dict["happy"] = HAPPY1_SPRITE;
+			level2dict["sad"] = SAD1_SPRITE;
+			level2dict["angry"] = ANGRY1_SPRITE;
+			//level 1
+			var level3dict:Dictionary = new Dictionary();
+			level3dict["happy"] = HAPPY1_SPRITE;
+			level3dict["sad"] = SAD1_SPRITE;
+			level3dict["angry"] = ANGRY1_SPRITE;
 			//put all the levels together now
 			embeddedObjects[1] = level1dict;
+			embeddedObjects[2] = level2dict;
+			embeddedObjects[3] = level3dict;
 			
 			this.x = xVal;
 			this.y = yVal;

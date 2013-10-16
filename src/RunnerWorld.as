@@ -37,7 +37,7 @@ package
 		{
 			writeTime(0);
 			f = new Entity(350, 50, s);
-			var backgroundImage:Class = [KID_BACKGROUND_IMAGE, WORK_BACKGROUND_IMAGE, HOSPITAL_BACKGROUND_IMAGE][levelNum+1];
+			var backgroundImage:Class = [KID_BACKGROUND_IMAGE, WORK_BACKGROUND_IMAGE, HOSPITAL_BACKGROUND_IMAGE][levelNum-1];
 			background = new Entity(0, 0, new Image(backgroundImage));
 			add(background);
 			add(f);
@@ -170,7 +170,7 @@ package
 			}
 
 			if (player.x < 0 || player.y > FP.screen.height) {
-				FP.world = new GameOver;
+				FP.world = new GameOver(level);
 			}
 		}
 		
