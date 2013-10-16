@@ -212,8 +212,9 @@ package
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
-			} else if (this.x <= e.x){
-				this.x -= 4;
+			} else if (this.x <= e.x) {
+				runWorld.resetSpeed();
+				this.x -= runWorld.defaultSpeed;
 			} else {
 				this.y -= 50;
 				ySpeed += gravity;

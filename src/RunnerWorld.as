@@ -16,13 +16,13 @@ package
 		private var time:Number = 0;
 		private var platforms:Array;
 		private var collectibles:Array;
-		private var defaultSpeed:Number = 4;
-		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
 		public var level:Number;
 		public var s:Text;
 		public var totTime:Number  = 0;
 		public var counter:Number = 0;
+		public var defaultSpeed:Number = 4;
+		public var currentSpeed:Number = 4;
 
 		private var background:Entity;
 		private var f:Entity = new Entity(280, 100, s);
