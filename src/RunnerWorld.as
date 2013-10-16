@@ -1,6 +1,7 @@
 package  
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.World;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;	
@@ -8,6 +9,8 @@ package
 
 	public class RunnerWorld extends World
 	{
+		private const platformHeight:Number = 20;
+		private const obstacleHeight:Number = 50;
 		private var player:Player;
 		private var time:Number = 0;
 		private var platforms:Array;
@@ -16,28 +19,54 @@ package
 		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
 		public var level:Number;
+		public var s:Text;
+		public var totTime:Number  = 0;
+		public var counter:Number = 0;
+
+
+		private var f:Entity = new Entity(280, 100, s);
+
+
 		
 		private var nextPlatform:Platform = null;
 		
-		public function RunnerWorld() 
+		public function RunnerWorld(levelNum:Number = 1) 
 		{
+			writeTime(0);
+			trace("testin  " + s.text);
+			f= new Entity(350, 50, s);
+			
+
+
+
+			add(f);
+
 			player = new Player(this);
 			add(player);
 			
 			platforms = new Array();
 			collectibles = new Array();
 			
-			level = 1;
+			level = levelNum;
 			
-			initPlatform(800, 0, 400, currentSpeed);
+			initPlatform(800, platformHeight, 0, 400, currentSpeed);
 		}
-		public function initPlatform(width:Number, xPos:Number, yPos:Number, speed:Number):void {
+		public function initPlatform(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void {
 			var p:Platform = new Platform();
-			p.init(width, xPos, yPos, speed);
+			p.init(width, height, xPos, yPos, speed);
 			add(p);
 			platforms.push(p);
 			
 			nextPlatform = p;
+		}
+		
+		public function initBreakable(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void {
+			var b:BreakableObstacle = new BreakableObstacle();
+			b.init(width, height, xPos, yPos, speed);
+			add(b);
+			platforms.push(b);
+			
+			nextPlatform = b;
 		}
 		
 		public function makeCrannyTrap():void {
@@ -48,14 +77,38 @@ package
 			add(coll);
 			
 			for (var n:int = 55; n <= 135; n += 20) {
-				initPlatform(200, c.x + 500, c.y - n, currentSpeed);
+				initBreakable(200, platformHeight, c.x + 500, c.y - n, currentSpeed);
 			}
 			
 			nextPlatform = c;
 		}
 		
+		public function writeTime(totTime:Number):void {
+			var timer:Number = 30 - totTime;
+			
+			if (timer >= 0)
+			{
+				FP.world.remove(f);
+				s = new Text(timer.toString());
+				s.color = 0xFFFFFF;
+				s.align = "center";
+				f = new Entity(150,150, s);
+				FP.world.add(f);
+			}
+			else {
+				FP.world = new CompleteWorld(level, player.currentEmotion);
+			}
+		}
+		
 		override public function update():void {
 			time += 1;
+			counter = FP.elapsed;
+			
+
+			totTime  = totTime + counter;
+
+			writeTime(totTime);
+			add(f);
 			
 			if (nextPlatform.x + nextPlatform.width < FP.width) {
 				var shouldGoUp:Boolean = (nextPlatform.y > FP.height * Math.random());
@@ -66,7 +119,7 @@ package
 					nextY = nextPlatform.y - 30 - 40 * Math.random();
 					if (nextY < 5) nextY = 5;
 					
-					initPlatform(	500 + 600 * Math.random(), 
+					initPlatform(	500 + 600 * Math.random(), platformHeight, 
 									nextPlatform.x + nextPlatform.width + 50 + 30 * Math.random(),
 									nextY,
 									currentSpeed   );
@@ -75,7 +128,7 @@ package
 					nextY = nextPlatform.y + 50 + 200 * Math.random();
 					if (nextY > FP.height - nextPlatform.height - 5) nextY = FP.height - nextPlatform.height - 5;
 					
-					initPlatform(	500 + 600 * Math.random(), 
+					initPlatform(	500 + 600 * Math.random(), platformHeight,
 									nextPlatform.x + nextPlatform.width + 20 + 40 * Math.random() + Math.sqrt((nextY - nextPlatform.y) / 4),
 									nextY,
 									currentSpeed   );

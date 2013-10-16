@@ -10,11 +10,17 @@ package
 	{
 		private var t:Text;
 		private var e:Entity;
+		private var f:Entity;
+		private var s:Text;
+		private var counter:Number = 0;
+		private var time:Number;
 		
 		public function Story() {
 			name = "story";
 			this.t = new Text("");
 			this.e = new Entity(FP.halfWidth - (t.width / 2), FP.halfHeight + 250 - (t.height / 2), t);
+			this.f = new Entity(FP.halfWidth - (t.width / 2), FP.halfHeight + 250 - (t.height / 2), t);
+
 		}
 
 		public function showText(emotion:String):void {
@@ -31,5 +37,6 @@ package
 			e = new Entity(FP.halfWidth - (t.width / 2), FP.halfHeight + 250 - (t.height / 2), t);
 			FP.world.add(e);
 		}
+			
 	}
 }

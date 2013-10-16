@@ -30,7 +30,7 @@ package
 		private var happiness:Number = 0;
 		private var sadness:Number = 0;
 		private var anger:Number = 0;
-		private var currentEmotion:String = "happy";
+		public var currentEmotion:String = "happy";
 		private var story:Story;
 		
 		[Embed(source = 'assets/Player_v0_hs.png')] private const HAPPY_SAD_SPRITE:Class;
@@ -183,19 +183,39 @@ package
 		}
 		
 		override public function moveCollideX(e:Entity):Boolean {
+			if (e is BreakableObstacle) {
+				// check if the player is dashing
+				if (currentlyDashing) {
+					// if yes, destroy the obstacle!
+					(e as BreakableObstacle).destroy();
+					return true;
+				}
+			}
+			// otherwise, treat as a general platform
 			this.x -= 4;
 			return true; 
 		}
 		
 		override public function moveCollideY(e:Entity):Boolean {
-			if (Math.abs(this.y + 50 - e.y) < 1. || (this.currentEmotion == "sad" && Math.abs(this.y + 30 - e.y) < 1.)){
+			if (e is BreakableObstacle) {
+				// check if the player is dashing
+				if (currentlyDashing) {
+					// if yes, destroy the obstacle!
+					(e as BreakableObstacle).destroy();
+					return true;
+				}
+			}
+			// otherwise, treat as a general platform
+			trace(this.y);
+			trace(e.y);
+			if ((Math.abs(this.y + 50 - e.y) < 1.) || (Math.abs(this.y + 30 - e.y) < 1.)){
 				doubleJumped = false;
 				onPlatform = true;
 				this.ySpeed = 0;
 			} else if (this.x <= e.x){
 				this.x -= 4;
 			} else {
-				this.y += 10;
+				this.y -= 50;
 				ySpeed += gravity;
 			}
 			return true;
