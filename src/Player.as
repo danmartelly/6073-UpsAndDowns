@@ -18,7 +18,7 @@ package
 		private const jumpSpeed:Number = 12;
 		private const gravity:Number = .5;
 		private const xPos:Number = 20;
-		private const dashingCooldown:Number = 2; //in seconds
+		private const dashingCooldown:Number = 0.5; //in seconds
 		private const lengthOfDashing:Number = 1; //in seconds
 		private const dashSpeed:Number = 12;
 		private var ySpeed:Number = 0;
