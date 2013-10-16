@@ -20,10 +20,7 @@ package
 			var x:Text = new Text("Images created and found by: Elizabeth Attaway");
 			var y:Text = new Text("Press m to go back to main screen");
 			var z:Text = new Text("Storyline produced by: Tom ROberts and Tristan Daniels");
-			var v:Text = new Text("Sound Effects produced by:  freesounds.org");
-			var x:Text = new Text("Images made by: ");
 			var y:Text = new Text("Press m to go back to main screen");
-			var z:Text = new Text("Story produced by: Tristan Daniels and Tom Roberts");
 			
 			t.color = 0xFFFFFF;
 			t.align = "center";

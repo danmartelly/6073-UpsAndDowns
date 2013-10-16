@@ -19,7 +19,7 @@ package
 		
 		override public function init():void {
 			trace("FlashPunk has started successfully!");
-			FP.world = new Credits;
+			FP.world = new Title;
 		}
 		
 		//pause functionality
