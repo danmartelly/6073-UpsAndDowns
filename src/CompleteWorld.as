@@ -31,12 +31,12 @@ package
 			
 			storyText.color = 0xFFFFFF;
 			storyText.align = "center";
-			storyEntity = new Entity(FP.halfWidth - storyText.width/2, FP.halfHeight - storyText.height/2, storyText);
+			storyEntity = new Entity(FP.halfWidth - (storyText.width/2), (FP.halfHeight/2) - (storyText.height/2), storyText);
 			
 			continueText = new Text("Press S to start the next level");
 			continueText.color = 0xFFFFFF;
 			continueText.align = "center";
-			continueEntity = new Entity(FP.halfWidth - continueText.width/2, FP.halfHeight/2, continueText);
+			continueEntity = new Entity(FP.halfWidth - continueText.width/2, FP.halfHeight, continueText);
 			
 			add(storyEntity);
 			add(continueEntity);
