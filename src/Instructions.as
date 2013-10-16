@@ -19,7 +19,7 @@ package
 			var v:Text = new Text("In this game, there will be platforms coming at you. ");
 			var x:Text = new Text("Your goal is to survive through each of these levels using the powerups, but be careful.  ");
 			 var y:Text = new Text("The powerups you collect will affect your life.  ");
-			 var z:Text = new Text("Press S to continue.");
+			 var z:Text = new Text("Press S to continue and P to pause at any point in game and check remaining time.");
 			t.color = 0xFFFFFF;
 			t.align = "center";
 			s.color = 0xFFFFFF;

@@ -18,7 +18,9 @@ package
 			var u:Text = new Text("Skyler Seto, Nathan Pinsker, Tristan Daniels");  
 			var v:Text = new Text("Sund Effects produced by:  freesounds.org");
 			var x:Text = new Text("Images made by: ");
+			var y:Text = new Text("Press m to go back to main screen");
 			var z:Text = new Text("Storyline produced by: ");
+			
 			t.color = 0xFFFFFF;
 			t.align = "center";
 			s.color = 0xFFFFFF;
@@ -27,6 +29,8 @@ package
 			u.align = "center";
 			v.color = 0xFFFFFF;
 			v.align = "center";
+			y.color = 0xFFFFFF;
+			y.align = "center";
 			x.color = 0xFFFFFF;
 			x.align = "center";
 			z.color = 0xFFFFFF;
@@ -41,14 +45,16 @@ package
 			add(h);
 			var i:Entity = new Entity(20, 300, x);
 			add(i);
-			var k:Entity = new Entity(20, 400, z);
+			var j:Entity = new Entity(20, 400, y);
+			add(j);
+			var k:Entity = new Entity(20, 350, z);
 			add(k);
 		}
  
 		override public function update():void
 		{
 			super.update();
-			//if (Input.pressed(Key.S)) FP.world = new RunnerWorld;
+			if (Input.pressed(Key.M)) FP.world = new Title;
 
 		}
  

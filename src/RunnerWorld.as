@@ -36,7 +36,6 @@ package
 		public function RunnerWorld(levelNum:Number = 1) 
 		{
 			writeTime(0);
-			trace("testin  " + s.text);
 			f = new Entity(350, 50, s);
 			var backgroundImage:Class = [KID_BACKGROUND_IMAGE, WORK_BACKGROUND_IMAGE, HOSPITAL_BACKGROUND_IMAGE][levelNum+1];
 			background = new Entity(0, 0, new Image(backgroundImage));
@@ -87,15 +86,30 @@ package
 		
 		public function writeTime(totTime:Number):void {
 			var timer:Number = 30 - totTime;
+			var tim:int = int(timer);
 			
 			if (timer >= 0)
 			{
-				FP.world.remove(f);
-				s = new Text(timer.toString());
-				s.color = 0xFFFFFF;
-				s.align = "center";
-				f = new Entity(150,150, s);
-				FP.world.add(f);
+				if(timer>10){
+					FP.world.remove(f);
+					var splashText:Text = new Text("Time Remaining: " + tim.toString(),0,0,640,480);
+					splashText.color = 0x00ff00;
+					splashText.size = 32;
+					f = new Entity(0,0,splashText);
+					f.x = 280;
+					f.y = 100;
+					FP.world.add(f);
+				}
+				else {
+					FP.world.remove(f);
+					var splashText:Text = new Text("Time Remaining 0" + tim.toString(),0,0,640,480);
+					splashText.color = 0x00ff00;
+					splashText.size = 32;
+					f = new Entity(0,0,splashText);
+					f.x = 280;
+					f.y = 100;
+					FP.world.add(f);
+				}
 			}
 			else {
 				FP.world = new CompleteWorld(level, player.currentEmotion);
