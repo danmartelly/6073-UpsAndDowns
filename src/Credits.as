@@ -16,10 +16,10 @@ package
 			var t:Text = new Text("Thanks for playing our game!");  
 			var s:Text = new Text("Created by: Daniel Martelly, Elizabeth Attaway, Tom Roberts, ");
 			var u:Text = new Text("Skyler Seto, Nathan Pinsker, Tristan Daniels");  
-			var v:Text = new Text("Sund Effects produced by:  freesounds.org");
+			var v:Text = new Text("Sound Effects produced by:  freesounds.org");
 			var x:Text = new Text("Images made by: ");
 			var y:Text = new Text("Press m to go back to main screen");
-			var z:Text = new Text("Storyline produced by: ");
+			var z:Text = new Text("Story produced by: Tristan Daniels and Tom Roberts");
 			
 			t.color = 0xFFFFFF;
 			t.align = "center";
