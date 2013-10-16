@@ -1,6 +1,7 @@
 package  
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.World;
 	import net.flashpunk.utils.Input;
@@ -23,10 +24,10 @@ package
 		public var totTime:Number  = 0;
 		public var counter:Number = 0;
 
-
+		private var background:Entity;
 		private var f:Entity = new Entity(280, 100, s);
 
-
+		[Embed(source = 'assets/kidBackground.png')] private const BACKGROUND_IMAGE:Class;
 		
 		private var nextPlatform:Platform = null;
 		
@@ -35,10 +36,8 @@ package
 			writeTime(0);
 			trace("testin  " + s.text);
 			f= new Entity(350, 50, s);
-			
-
-
-
+			background = new Entity(0, 0, new Image(BACKGROUND_IMAGE));
+			add(background);
 			add(f);
 
 			player = new Player(this);

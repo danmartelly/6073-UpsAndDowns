@@ -22,7 +22,7 @@ package
 		override public function update():void
 		{
 			super.update();
-			if (Input.pressed(Key.R)) FP.world = new RunnerWorld;
+			if (Input.pressed(Key.R)) FP.world = new RunnerWorld(1);
 			if (Input.pressed(Key.M)) FP.world = new Title;
 
 		}
