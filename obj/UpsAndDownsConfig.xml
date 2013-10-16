@@ -32,20 +32,12 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-<<<<<<< HEAD
       <path-element>C:\MinGW\msys\1.0\home\Nathan\6073-UpsAndDowns\src</path-element>
-=======
-      <path-element>C:\Users\Skyler\Documents\6073-UpsAndDowns\src</path-element>
->>>>>>> f54cbe864b77df88c1501394645c6fd816d0c34d
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
-<<<<<<< HEAD
     <path-element>C:\MinGW\msys\1.0\home\Nathan\6073-UpsAndDowns\src\Main.as</path-element>
-=======
-    <path-element>C:\Users\Skyler\Documents\6073-UpsAndDowns\src\Main.as</path-element>
->>>>>>> f54cbe864b77df88c1501394645c6fd816d0c34d
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

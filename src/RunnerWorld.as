@@ -35,7 +35,6 @@ package
 		
 		public function RunnerWorld(levelNum:Number = 1) 
 		{
-			writeTime(0);
 			f = new Entity(350, 50, s);
 			var backgroundImage:Class = [KID_BACKGROUND_IMAGE, WORK_BACKGROUND_IMAGE, HOSPITAL_BACKGROUND_IMAGE][levelNum-1];
 			background = new Entity(0, 0, new Image(backgroundImage));
@@ -49,8 +48,11 @@ package
 			collectibles = new Array();
 			
 			level = levelNum;
+			currentSpeed = 3 + level;
 			
 			initPlatform(800, platformHeight, 0, 400, currentSpeed);
+			
+			writeTime(0);
 		}
 		public function initPlatform(width:Number, height:Number, xPos:Number, yPos:Number, speed:Number):void {
 			var p:Platform = new Platform();
@@ -85,7 +87,7 @@ package
 		}
 		
 		public function writeTime(totTime:Number):void {
-			var timer:Number = 30 - totTime;
+			var timer:Number = 20 + 10*level - totTime;
 			var tim:int = int(timer);
 			
 			if (timer >= 0)
