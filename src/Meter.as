@@ -25,7 +25,6 @@ package
 		
 		public function updateMeter(happiness:Number, sadness:Number, anger:Number):void
 		{
-			trace("!");
 			var sum:Number = happiness + sadness + anger;
 			var h1:Number = happiness / sum, h2:Number = sadness / sum, h3:Number = anger / sum;
 			
