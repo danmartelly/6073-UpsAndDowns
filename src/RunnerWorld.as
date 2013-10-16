@@ -16,8 +16,8 @@ package
 		private var time:Number = 0;
 		private var platforms:Array;
 		private var collectibles:Array;
-		private var defaultSpeed:Number = 4;
-		private var currentSpeed:Number = 4;
+		private var defaultSpeed:Number = 10;
+		private var currentSpeed:Number = 10;
 		private const SECONDS:Number = 60;
 		public var level:Number;
 		public var s:Text;
