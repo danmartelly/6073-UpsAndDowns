@@ -20,7 +20,7 @@ package
 		private const xPos:Number = 20;
 		private const dashingCooldown:Number = 2; //in seconds
 		private const lengthOfDashing:Number = 1; //in seconds
-		private const dashSpeed:Number = 9;
+		private const dashSpeed:Number = 21;
 		private var ySpeed:Number = 0;
 		private var doubleJumped:Boolean;
 		private var onPlatform:Boolean;

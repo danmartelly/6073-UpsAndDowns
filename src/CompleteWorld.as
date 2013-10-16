@@ -19,13 +19,13 @@ package
 		private var angryStories:Array = [["Man, I hated school. What a horrible place. Books and teachers and homework—and even worse, other kids. They might as well call it prison camp.",
 										"Mom made me eat broccoli every day. Now just the thought of it makes me want to projectile vomit."], //level1
 										
-										["angry placeholder"], //level2
+										["The boss just kept yelling at me for nothing. No one appreciates me. They'll just have to wait and see what I do."], //level2
 										
 										["With all this iBooks and GameBoxes and whatnot, no one knows how to talk to people anymore. This world’s going to hell in a handbasket! I’m glad I’ll be dead soon."] //level3
 										];
 		private var happyStories:Array = [["When I was a kid, I had the cutest little puppy. We did everything together. He made me the happiest boy in the world."],
 										
-										["happy placeholder"], //level2
+										["Work was great. I was respected and everything was going well at home."], //level2
 										
 										["The home was great. A life of shuffleboard, complaining, and desperate widows? I thought I’d died and gone to heaven."] //level3
 										];
@@ -54,6 +54,8 @@ package
 			
 			storyText.color = 0xFFFFFF;
 			storyText.align = "center";
+			storyText.wordWrap = true;
+			storyText.width = 400;
 			storyEntity = new Entity(FP.halfWidth - (storyText.width/2), (FP.halfHeight/2) - (storyText.height/2), storyText);
 			
 			if (currentLevel == 3) {
