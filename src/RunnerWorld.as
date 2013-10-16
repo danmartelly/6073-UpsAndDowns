@@ -27,7 +27,9 @@ package
 		private var background:Entity;
 		private var f:Entity = new Entity(280, 100, s);
 
-		[Embed(source = 'assets/kidBackground.png')] private const BACKGROUND_IMAGE:Class;
+		[Embed(source = 'assets/kidBackground.png')] private const KID_BACKGROUND_IMAGE:Class;
+		[Embed(source = 'assets/workBackground.png')] private const WORK_BACKGROUND_IMAGE:Class;
+		[Embed(source = 'assets/hospitalBackground.png')] private const HOSPITAL_BACKGROUND_IMAGE:Class;
 		
 		private var nextPlatform:Platform = null;
 		
@@ -35,8 +37,9 @@ package
 		{
 			writeTime(0);
 			trace("testin  " + s.text);
-			f= new Entity(350, 50, s);
-			background = new Entity(0, 0, new Image(BACKGROUND_IMAGE));
+			f = new Entity(350, 50, s);
+			var backgroundImage:Class = [KID_BACKGROUND_IMAGE, WORK_BACKGROUND_IMAGE, HOSPITAL_BACKGROUND_IMAGE][levelNum+1];
+			background = new Entity(0, 0, new Image(backgroundImage));
 			add(background);
 			add(f);
 
