@@ -22,8 +22,8 @@ package
 		public var s:Text;
 		public var totTime:Number  = 0;
 		public var counter:Number = 0;
-		public var defaultSpeed:Number = 10;
-		public var currentSpeed:Number = 10;
+		public var defaultSpeed:Number = 7;
+		public var currentSpeed:Number = 7;
 
 		private var background:Entity;
 		private var f:Entity = new Entity(280, 100, s);
