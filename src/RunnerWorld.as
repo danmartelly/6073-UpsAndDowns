@@ -19,9 +19,9 @@ package
 		private var currentSpeed:Number = 4;
 		private const SECONDS:Number = 60;
 		public var level:Number;
-		public var counter:Number;
 		public var s:Text;
 		public var totTime:Number  = 0;
+		public var counter:Number = 0;
 
 
 		private var f:Entity = new Entity(280, 100, s);
@@ -32,6 +32,13 @@ package
 		
 		public function RunnerWorld() 
 		{
+			writeTime(0);
+			trace("testin  " + s.text);
+			f= new Entity(350, 50, s);
+			
+
+
+
 			add(f);
 
 			player = new Player(this);
@@ -85,12 +92,11 @@ package
 				s = new Text(timer.toString());
 				s.color = 0xFFFFFF;
 				s.align = "center";
-				trace(s.text);
 				f = new Entity(150,150, s);
 				FP.world.add(f);
 			}
 			else {
-				FP.world = new Title;
+				FP.world = new CompleteWorld;
 			}
 		}
 		
