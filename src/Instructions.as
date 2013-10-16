@@ -18,8 +18,9 @@ package
 			var u:Text = new Text("In order to play this game, you will use the ‘up’ and ‘right’ key on the keyboard.");
 			var v:Text = new Text("In this game, there will be platforms coming at you. ");
 			var x:Text = new Text("Your goal is to survive through each of these levels using the powerups, but be careful.  ");
-			 var y:Text = new Text("The powerups you collect will affect your life.  ");
-			 var z:Text = new Text("Press S to continue and P to pause at any point in game and check remaining time.");
+			var y:Text = new Text("The powerups you collect will affect your life.  ");
+			var yy:Text = new Text("Happy will let you double jump, sad will make you small, and angry will let you dash");
+			var z:Text = new Text("Press S to continue and P to pause at any point in game and check remaining time.");
 			t.color = 0xFFFFFF;
 			t.align = "center";
 			s.color = 0xFFFFFF;
@@ -32,6 +33,8 @@ package
 			x.align = "center";
 			y.color = 0xFFFFFF;
 			y.align = "center";
+			yy.color = 0xFFFFFF;
+			yy.align = "center";
 			z.color = 0xFFFFFF;
 			z.align = "center";
 			var e:Entity = new Entity(20, 100, t);
@@ -46,8 +49,11 @@ package
 			add(i);
 			var j:Entity = new Entity(20, 350, y);
 			add(j);
-			var k:Entity = new Entity(20, 400, z);
+			var k:Entity = new Entity(20, 450, z);
 			add(k);
+			var l:Entity = new Entity(20, 400, yy);
+			add(l);			
+			
 		}
  
 		override public function update():void

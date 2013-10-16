@@ -17,9 +17,9 @@ package
 			var s:Text = new Text("Created by: Daniel Martelly, Elizabeth Attaway, Tom Roberts, ");
 			var u:Text = new Text("Skyler Seto, Nathan Pinsker, Tristan Daniels");  
 			var v:Text = new Text("Sund Effects produced by:  freesounds.org");
-			var x:Text = new Text("Images made by: ");
+			var x:Text = new Text("Images created and found by: Elizabeth Attaway");
 			var y:Text = new Text("Press m to go back to main screen");
-			var z:Text = new Text("Storyline produced by: ");
+			var z:Text = new Text("Storyline produced by: Tom ROberts and Tristan Daniels");
 			
 			t.color = 0xFFFFFF;
 			t.align = "center";
