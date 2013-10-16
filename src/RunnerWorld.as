@@ -30,7 +30,7 @@ package
 		
 		private var nextPlatform:Platform = null;
 		
-		public function RunnerWorld() 
+		public function RunnerWorld(levelNum:Number = 1) 
 		{
 			writeTime(0);
 			trace("testin  " + s.text);
@@ -47,7 +47,7 @@ package
 			platforms = new Array();
 			collectibles = new Array();
 			
-			level = 1;
+			level = levelNum;
 			
 			initPlatform(800, platformHeight, 0, 400, currentSpeed);
 		}
@@ -96,7 +96,7 @@ package
 				FP.world.add(f);
 			}
 			else {
-				FP.world = new CompleteWorld;
+				FP.world = new CompleteWorld(level, player.currentEmotion);
 			}
 		}
 		

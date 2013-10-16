@@ -30,7 +30,7 @@ package
 		private var happiness:Number = 0;
 		private var sadness:Number = 0;
 		private var anger:Number = 0;
-		private var currentEmotion:String = "happy";
+		public var currentEmotion:String = "happy";
 		private var story:Story;
 		
 		[Embed(source = 'assets/Player_v0_hs.png')] private const HAPPY_SAD_SPRITE:Class;

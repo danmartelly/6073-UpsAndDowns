@@ -1,5 +1,6 @@
 package  
 {
+	import flash.events.TextEvent;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Text;
@@ -7,35 +8,47 @@ package
 	import net.flashpunk.utils.Key;	
 	import net.flashpunk.FP;
 	
-	public class CompleteWorld extends World 
+	public class CompleteWorld extends World
 	{
- 
-		public function CompleteWorld() 
-		{
-			var t:Text = new Text("Congratulations!  You survived. ");
-			var s:Text = new Text("INSERT STORY TEXT HERE");
-			var u:Text = new Text("Press s to continue");
-			t.color = 0xFFFFFF;
-			t.align = "center";
-			s.color = 0xFFFFFF;
-			s.align = "center";
-			u.color = 0xFFFFFF;
-			u.align = "center";
-			var e:Entity = new Entity(250, 150, t);
-			var f:Entity = new Entity(290, 250, s);
-			var g:Entity = new Entity(300, 350, u);
-
-			add(e);
-			add(f);
-			add(g);
+		private var storyText:Text;
+		private var storyEntity:Entity;
+		private var continueText:Text;
+		private var continueEntity:Entity;
+		private var currentLevel:Number;
+		private var currentEmotion:String;
+		
+		public function CompleteWorld(l:Number, e:String) {
+			currentLevel = l;
+			currentEmotion = e;
+			
+			if (currentEmotion == "sad") {
+				storyText = new Text("Sad story :o(");
+			} else if (currentEmotion == "happy") {
+				storyText = new Text("Happy story!");
+			} else {
+				storyText = new Text("Angry story >.<");
+			}
+			
+			storyText.color = 0xFFFFFF;
+			storyText.align = "center";
+			storyEntity = new Entity(FP.halfWidth - storyText.width/2, FP.halfHeight - storyText.height/2, storyText);
+			
+			continueText = new Text("Press S to start the next level");
+			continueText.color = 0xFFFFFF;
+			continueText.align = "center";
+			continueEntity = new Entity(FP.halfWidth - continueText.width/2, FP.halfHeight/2, continueText);
+			
+			add(storyEntity);
+			add(continueEntity);
 		}
- 
-		override public function update():void
-		{
+		
+		override public function update():void {
 			super.update();
-			if (Input.pressed(Key.S)) FP.world = new RunnerWorld;
-
+			if (Input.pressed(Key.S)) {
+				// Commented out for now since game crashes if it can't find the sprites for the next level
+				// FP.world = new RunnerWorld(currentLevel + 1);
+				FP.world = new RunnerWorld;
+			}
 		}
- 
 	}
 }
