@@ -13,6 +13,7 @@ package
 		private const platformHeight:Number = 20;
 		private const obstacleHeight:Number = 50;
 		private var player:Player;
+		public var meter:Meter;
 		private var time:Number = 0;
 		private var platforms:Array;
 		private var collectibles:Array;
@@ -43,6 +44,9 @@ package
 
 			player = new Player(this);
 			add(player);
+			
+			meter = new Meter();
+			add(meter);
 			
 			platforms = new Array();
 			collectibles = new Array();

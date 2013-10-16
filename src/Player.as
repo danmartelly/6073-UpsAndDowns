@@ -175,6 +175,8 @@ package
 						this.graphic = new Image(HAPPY_SAD_SPRITE);
 					}
 				}
+				
+				runWorld.meter.updateMeter(happiness, sadness, anger);
 				c.destroy();
 			}
 			
